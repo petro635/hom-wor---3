@@ -54,9 +54,9 @@ def index():
 
 @app.route('/logout')
 def logout():
-    session.pop('user_id', None)  # Видаляємо користувача з сесії
-    flash("Ви вийшли з системи") # Показуємо повідомлення
-    return redirect(url_for('login')) # Перенаправляємо на сторінку логіну
+    session.pop('user_id', None)
+    flash("Ви вийшли з системи")
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
