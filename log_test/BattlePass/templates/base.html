@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій проєкт</title>
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Головна</a>
+
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('logout') }}">LogOut</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Реєстрація</a>
+        {% endif %}
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <hr>
+
+    {% block content %}{% endblock %}
+
+
+    <nav>
+        <a href="/">Головна</a>
+
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('logout') }}">LogOut</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: blue;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+</body>
+</html>
